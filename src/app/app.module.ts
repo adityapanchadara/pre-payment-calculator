@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { PrepaymentCalculatorComponent } from './prepayment-calculator/prepayment-calculator.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PrepaymentCalculatorComponent
   ],
   imports: [
     BrowserModule,
