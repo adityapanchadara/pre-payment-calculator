@@ -1,1 +1,82 @@
-<p>prepayment-calculator works!</p>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">Prepayment Calculator</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
+        aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</nav>
+
+<div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <div class="carousel-caption">
+                <h2> TBD</h2>
+            </div>
+            <img src="../../assets/homeLoanresized2.jpg" class="d-block w-100" alt="../../assets/images/cliffs.JPG">
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <div class="container-fluid">
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <label class="control-label" for="players">Loan Amount</label>
+                        <input [(ngModel)]="principalAmount" class="form-control"
+                            id="players" type="text" placeholder="Enter loan amount">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="control-label" for="readOnlyInput">Interest %</label>
+                        <input [(ngModel)]="interestPer" class="form-control" id="amount" type="text"
+                            placeholder="0.00%">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="control-label" for="readOnlyInput">Term in Months</label>
+                        <input [(ngModel)]="term" class="form-control" id="amountM" type="text" placeholder="Enter loan period in Months">
+                    </div>
+                    <div class="col-md-3" style="margin-top: 32px;">
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button (click)="calculate()" type="button" class="btn btn-primary">Calculate</button>
+                            </span>
+                        </div>                        
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <label class="control-label" for="readOnlyInput">Total Amount:</label>
+                        <input class="form-control" readonly id="TotalAMount" type="text" placeholder="EMI" [(ngModel)]="totalInterestPaid+principalAmount">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="control-label" for="readOnlyInput">Total Interest</label>
+                        <input class="form-control" readonly id="TotalInter" type="text" placeholder="EMI" [(ngModel)]="totalInterestPaid">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="control-label" for="readOnlyInput">Monthly EMI</label>
+                        <input class="form-control" readonly id="biddingAmt" type="text" placeholder="EMI" [(ngModel)]="displayMonthlyEMI">
+                    </div>
+                </div>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr> 
+                        <th>Months</th>
+                        <th>Balance</th>
+                        <th>Interest</th>
+                        <th>Principal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let m of monthlyValues; let i=index">
+                        <td>{{i+1}}</td>
+                        <td>{{m.balance | number}}</td>
+                        <td>{{m.monthlyInt | number}}</td>
+                        <td>{{m.monthlyP | number}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
