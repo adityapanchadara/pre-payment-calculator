@@ -6,14 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./prepayment-calculator.component.css']
 })
 export class PrepaymentCalculatorComponent implements OnInit {
-  public principalAmount: any;
+  public principalAmount: number = 0;
   public interestPer: any;
   public term: any;
   private monthlyEmi: any;
   public displayMonthlyEMI: any;
   public monthlyValues: any = [];
   private tempMonthlyValues:any = [];
-  public totalInterestPaid: any = 0;
+  public totalInterestPaid: number = 0;
+  public totalAmount: number = 0;
 
   constructor() { }
 
@@ -35,6 +36,8 @@ export class PrepaymentCalculatorComponent implements OnInit {
       balanceAmount = this.getMonthlyValues(balanceAmount, monthlyTerm);
     }
     this.totalInterestPaid = Math.round(this.totalInterestPaid);
+    console.log(this.totalInterestPaid, this.principalAmount);
+    this.totalAmount = this.totalInterestPaid + Number(this.principalAmount);
     this.monthlyValues = this.tempMonthlyValues; // Added temporary array to avoid loading html before calculating.
   }
 
