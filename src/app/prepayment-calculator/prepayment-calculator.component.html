@@ -46,6 +46,29 @@
                         </div>
                     </div>
                 </div>
+                <h5 class="card-title">Pre-Payment Options</h5>
+                <div class="form-group row">
+                    <ng-container  *ngFor="let x of prepaymentMonth; let i=index">
+                    <div class="col-md-3">
+                        <label class="control-label" for="players">Month:</label>
+                        <input [(ngModel)]="x.month" class="form-control" id="monthId{{i}}" type="text"
+                            placeholder="Enter month">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="control-label" for="players">Amount:</label>
+                        <input [(ngModel)]="x.amount" class="form-control" id="playersId{{i}}" type="text"
+                            placeholder="Enter prepay amount">
+                    </div>
+                    <div class="col-md-3" style="margin-top: 32px;">
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button (click)="addPrepays()" type="button" class="btn btn-primary">Add</button>
+                            </span>
+                        </div>
+                    </div>
+                </ng-container>
+                    
+                </div>
                 <div class="form-group row">
                     <div class="col-md-3">
                         <label class="control-label" for="readOnlyInput"><b>Total Amount: </b></label>
