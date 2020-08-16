@@ -16,6 +16,9 @@ export class PrepaymentCalculatorComponent implements OnInit {
   public totalInterestPaid: number = 0;
   public totalAmount: number = 0;
   public prepaymentMonth: any = [{amount: 0, month: 0}];
+  public overAllInterest: any;
+  public amountSaved: any;
+  public monthlyPay: any = [{month: 0, amount: 0}];
 
   constructor() { }
 
@@ -34,11 +37,16 @@ export class PrepaymentCalculatorComponent implements OnInit {
     let balanceAmount = this.principalAmount;
     while (i < this.term) {
       i++;
+      if(balanceAmount<0) {
+        break;
+      }
       balanceAmount = this.getMonthlyValues(balanceAmount, monthlyTerm, i);
     }
     this.totalInterestPaid = Math.round(this.totalInterestPaid);
-    console.log(this.totalInterestPaid, this.principalAmount);
+    this.overAllInterest = (this.monthlyEmi*this.term) - Number(this.principalAmount);
     this.totalAmount = this.totalInterestPaid + Number(this.principalAmount);
+    const getOverAllAmount = this.overAllInterest + Number(this.principalAmount);
+    this.amountSaved = Math.round(getOverAllAmount) - this.totalAmount;
     this.monthlyValues = this.tempMonthlyValues; // Added temporary array to avoid loading html before calculating.
   }
 
@@ -52,6 +60,9 @@ export class PrepaymentCalculatorComponent implements OnInit {
         principalAmount = Number(principalAmount) - Number(element.amount);
       }
     });
+    if(this.monthlyPay[0].month > 0) {
+      principalAmount = Number(principalAmount) - Number(this.monthlyPay[0].amount);
+    }
     return principalAmount - principalMonthly;
   }
 
