@@ -33,6 +33,10 @@ export class PrepaymentCalculatorComponent implements OnInit {
     this.displayMonthlyEMI = Math.round(this.monthlyEmi);
     this.tempMonthlyValues = [];
     this.monthlyValues = [];
+    this.totalInterestPaid = 0;
+    this.overAllInterest = 0;
+    this.totalAmount = 0;
+    this.amountSaved = 0;
     let i = 0;
     let balanceAmount = this.principalAmount;
     while (i < this.term) {
